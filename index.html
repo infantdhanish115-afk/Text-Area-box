@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEXT AREA</title>
+
+  <!-- Tailwind CDN -->
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-green-200 shadow-lg rounded-2xl p-6 w-96">
+    <h2 class="text-2xl font-semibold text-center mb-4 text-gray-800">TEXT AREA</h2>
+    
+    <textarea id="message" maxlength="200" placeholder="Type your message..." 
+      class=" bg-green-100 w-full border border-black rounded-lg p-3 focus:ring-2 focus:ring-green-600 focus:outline-none resize-none h-32 text-black"></textarea>
+
+    <div class="flex justify-between items-center mt-2">
+      <p id="counter" class="text-black text-sm font-bold">0 / 200 characters</p>
+      <p id="warning" class="text-red-500 text-sm font-semibold"></p>
+    </div>
+  </div>
+<script>
+    const textarea = document.getElementById("message");
+    const counter = document.getElementById("counter");
+    const warning = document.getElementById("warning");
+    const maxChars = 200;
+
+    textarea.addEventListener("input", () => {
+      const currentLength = textarea.value.length;
+      counter.textContent = `${currentLength} / ${maxChars} characters`;
+
+      if (currentLength >= maxChars) {
+        warning.textContent = "Character limit reached!";
+        textarea.classList.add("border-red-500");
+      } 
+      else {
+        warning.textContent = "";
+        textarea.classList.remove("border-red-500");
+      }
+    });
+</script>
+  
+
+</body>
+</html>
